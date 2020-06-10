@@ -12,19 +12,19 @@ This playbook assumes the following:
 
 1. You're on a Network that has access to the internet.
 2. The network you're on does NOT have DHCP (you can disable installing DHCP on the helper).
-3. The ocp4-helpernode will be your LB/DHCP/PXE/DNS and HTTP server.
+3. The okd4-helpernode will be your LB/DHCP/PXE/DNS and HTTP server.
 4. You still have to do the OpenShift Install steps by hand.
 5. I used CentOS 7/8, but RHEL 7/8 will work as well.
-6. You will be running the `openshift-install` command from the ocp4-helpernode.
+6. You will be running the `openshift-install` command from the okd4-helpernode.
 
-Below is a highlevel diagram how the ocp4-helpernode fits into your network.
+Below is a highlevel diagram how the okd4-helpernode fits into your network.
 
-![ocp4-helpernode](docs/images/hn.png)
+![okd4-helpernode](docs/images/hn.png)
 
 
-It's important to note that you can delegate DNS to this ocp4-helpernode if you don't want to use it as your main DNS server. You will have to delegate `$CLUSTERID.$DOMAIN` to this helper node.
+It's important to note that you can delegate DNS to this okd4-helpernode if you don't want to use it as your main DNS server. You will have to delegate `$CLUSTERID.$DOMAIN` to this helper node.
 
-For example; if you want a `$CLUSTERID` of **ocp4**, and you have a `$DOMAIN` of **example.com**. Then you will delegate `ocp4.example.com` to this ocp4-helpernode.
+For example; if you want a `$CLUSTERID` of **okd4**, and you have a `$DOMAIN` of **lan.quanby.nl**. Then you will delegate `okd4.lan.quanby.nl` to this okd4-helpernode.
 
 # Using this playbook
 
@@ -54,8 +54,8 @@ Next install `ansible` and `git`, then clone this repo.
 
 ```
 yum -y install ansible git
-git clone https://github.com/RedHatOfficial/ocp4-helpernode
-cd ocp4-helpernode
+git clone https://github.com/RedHatOfficial/okd4-helpernode
+cd okd4-helpernode
 ```
 
 ## Setup your Environment Vars
@@ -100,7 +100,7 @@ The following are quickstarts. These are written using libvirt, but are generic 
 * DHCP install [quickstart](docs/quickstart.md)
 * Static IPs install [quickstart](docs/quickstart-static.md)
 * DHCP install on Power [quickstart](docs/quickstart-ppc64le.md)
-* OCP4 on VMware vSphere UPI Automation [quickstart](https://github.com/RedHatOfficial/ocp4-vsphere-upi-automation)
+* OCP4 on VMware vSphere UPI Automation [quickstart](https://github.com/RedHatOfficial/okd4-vsphere-upi-automation)
 
 # Contributing
 

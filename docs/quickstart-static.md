@@ -5,14 +5,14 @@ This quickstart will get you up and running on `libvirt`. This should work on ot
 To start login to your virtualization server / hypervisor
 
 ```
-ssh virt0.example.com
+ssh virt0.lan.quanby.nl
 ```
 
 And create a working directory
 
 ```
-mkdir ~/ocp4-workingdir
-cd ~/ocp4-workingdir
+mkdir ~/okd4-workingdir
+cd ~/okd4-workingdir
 ```
 
 ## Create Virtual Network
@@ -20,7 +20,7 @@ cd ~/ocp4-workingdir
 Download the virtual network configuration file, [virt-net.xml](examples/virt-net.xml)
 
 ```
-wget https://raw.githubusercontent.com/RedHatOfficial/ocp4-helpernode/master/docs/examples/virt-net.xml
+wget https://raw.githubusercontent.com/RedHatOfficial/okd4-helpernode/master/docs/examples/virt-net.xml
 ```
 
 Create a virtual network using this file file provided in this repo (modify if you need to).
@@ -43,12 +43,12 @@ Download the Kickstart file for either [EL 7](examples/helper-ks.cfg) or [EL 8](
 
 __EL 7__
 ```
-wget https://raw.githubusercontent.com/RedHatOfficial/ocp4-helpernode/master/docs/examples/helper-ks.cfg -O helper-ks.cfg
+wget https://raw.githubusercontent.com/RedHatOfficial/okd4-helpernode/master/docs/examples/helper-ks.cfg -O helper-ks.cfg
 ```
 
 __EL 8__
 ```
-wget https://raw.githubusercontent.com/RedHatOfficial/ocp4-helpernode/master/docs/examples/helper-ks8.cfg -O helper-ks.cfg
+wget https://raw.githubusercontent.com/RedHatOfficial/okd4-helpernode/master/docs/examples/helper-ks8.cfg -O helper-ks.cfg
 ```
 
 Edit `helper-ks.cfg` for your environment and use it to install the helper. The following command installs it "unattended".
@@ -57,8 +57,8 @@ Edit `helper-ks.cfg` for your environment and use it to install the helper. The 
 
 __EL 7__
 ```
-virt-install --name="ocp4-aHelper" --vcpus=2 --ram=4096 \
---disk path=/var/lib/libvirt/images/ocp4-aHelper.qcow2,bus=virtio,size=30 \
+virt-install --name="okd4-helper" --vcpus=2 --ram=4096 \
+--disk path=/var/lib/libvirt/images/okd4-helper.qcow2,bus=virtio,size=30 \
 --os-variant centos7.0 --network network=openshift4,model=virtio \
 --boot hd,menu=on --location /var/lib/libvirt/ISO/CentOS-7-x86_64-Minimal-1810.iso \
 --initrd-inject helper-ks.cfg --extra-args "inst.ks=file:/helper-ks.cfg" --noautoconsole
@@ -66,8 +66,8 @@ virt-install --name="ocp4-aHelper" --vcpus=2 --ram=4096 \
 
 __EL 8__
 ```
-virt-install --name="ocp4-aHelper" --vcpus=2 --ram=4096 \
---disk path=/var/lib/libvirt/images/ocp4-aHelper.qcow2,bus=virtio,size=50 \
+virt-install --name="okd4-helper" --vcpus=2 --ram=4096 \
+--disk path=/var/lib/libvirt/images/okd4-helper.qcow2,bus=virtio,size=50 \
 --os-variant centos8 --network network=openshift4,model=virtio \
 --boot hd,menu=on --location /var/lib/libvirt/ISO/CentOS-8-x86_64-1905-dvd1.iso \
 --initrd-inject helper-ks.cfg --extra-args "inst.ks=file:/helper-ks.cfg" --noautoconsole
@@ -85,13 +85,13 @@ The provided Kickstart file installs the helper with the following settings (whi
 You can watch the progress by lauching the viewer
 
 ```
-virt-viewer --domain-name ocp4-aHelper
+virt-viewer --domain-name okd4-helper
 ```
 
 Once it's done, it'll shut off...turn it on with the following command
 
 ```
-virsh start ocp4-aHelper
+virsh start okd4-helper
 ```
 
 ## Prepare the Helper Node
@@ -114,8 +114,8 @@ Install `ansible` and `git` and clone this repo
 
 ```
 yum -y install ansible git
-git clone https://github.com/RedHatOfficial/ocp4-helpernode
-cd ocp4-helpernode
+git clone https://github.com/RedHatOfficial/okd4-helpernode
+cd okd4-helpernode
 ```
 
 Create the [vars-static.yaml](examples/vars-static.yaml) file with the IP addresss that will be assigned to the masters/workers/boostrap. The IP addresses need to be right since they will be used to create your DNS server.
@@ -142,8 +142,8 @@ After it is done run the following to get info about your environment and some i
 Now you can start the installation process. Create an install dir.
 
 ```
-mkdir ~/ocp4
-cd ~/ocp4
+mkdir ~/okd4
+cd ~/okd4
 ```
 
 Create a place to store your pull-secret
@@ -175,7 +175,7 @@ Next, create an `install-config.yaml` file.
 ```
 cat <<EOF > install-config.yaml
 apiVersion: v1
-baseDomain: example.com
+baseDomain: lan.quanby.nl
 compute:
 - hyperthreading: Enabled
   name: worker
@@ -185,7 +185,7 @@ controlPlane:
   name: master
   replicas: 3
 metadata:
-  name: ocp4
+  name: okd4
 networking:
   clusterNetworks:
   - cidr: 10.254.0.0/16
@@ -237,7 +237,7 @@ openshift-install create ignition-configs
 Finally, copy the ignition files in the `ignition` directory for the websever
 
 ```
-cp ~/ocp4/*.ign /var/www/html/ignition/
+cp ~/okd4/*.ign /var/www/html/ignition/
 restorecon -vR /var/www/html/
 chmod o+r /var/www/html/ignition/*.ign
 ```
@@ -251,8 +251,8 @@ Install each VM one by one; here's an example for my boostrap node
 > **NOTE** If you want to use macvtap (i.e. have the VM "be on your network"); you can use `--network type=direct,source=enp0s31f6,source_mode=bridge,model=virtio` ; replace the interface where applicable
 
 ```
-virt-install --name=ocp4-bootstrap --vcpus=4 --ram=8192 \
---disk path=/var/lib/libvirt/images/ocp4-bootstrap.qcow2,bus=virtio,size=120 \
+virt-install --name=okd4-bootstrap --vcpus=4 --ram=8192 \
+--disk path=/var/lib/libvirt/images/okd4-bootstrap.qcow2,bus=virtio,size=120 \
 --os-variant rhel8.0 --network network=openshift4,model=virtio \
 --boot menu=on --cdrom /exports/ISO/rhcos-4.2.0-x86_64-installer.iso
 ```
@@ -266,7 +266,7 @@ Once booted; press `tab` on the boot menu
 Add your staticips and coreos options. Here is an example of what I used for my bootstrap node. (type this **ALL IN ONE LINE** ...I only used linebreaks here for ease of readability...but type it all in one line)
 
 ```
-ip=192.168.7.20::192.168.7.1:255.255.255.0:bootstrap.ocp4.example.com:enp1s0:none
+ip=192.168.7.20::192.168.7.1:255.255.255.0:bootstrap.okd4.lan.quanby.nl:enp1s0:none
 nameserver=192.168.7.77
 coreos.inst.install_dev=vda
 coreos.inst.image_url=http://192.168.7.77:8080/install/bios.raw.gz
@@ -308,7 +308,7 @@ Once you see this message below...
 ```
 DEBUG OpenShift Installer v4.2.0-201905212232-dirty
 DEBUG Built from commit 71d8978039726046929729ad15302973e3da18ce
-INFO Waiting up to 30m0s for the Kubernetes API at https://api.ocp4.example.com:6443...
+INFO Waiting up to 30m0s for the Kubernetes API at https://api.okd4.lan.quanby.nl:6443...
 INFO API v1.13.4+838b4fa up
 INFO Waiting up to 30m0s for bootstrapping to complete...
 DEBUG Bootstrap status: complete
@@ -322,7 +322,7 @@ INFO It is now safe to remove the bootstrap resources
 First, login to your cluster
 
 ```
-export KUBECONFIG=/root/ocp4/auth/kubeconfig
+export KUBECONFIG=/root/okd4/auth/kubeconfig
 ```
 
 Your install may be waiting for worker nodes to get approved. Normally the `machineconfig node approval operator` takes care of this for you. However, sometimes this needs to be done manually. Check pending CSRs with the following command.
@@ -371,10 +371,10 @@ openshift-install wait-for install-complete
 
 ## Login to the web console
 
-The OpenShift 4 web console will be running at `https://console-openshift-console.apps.{{ dns.clusterid }}.{{ dns.domain }}` (e.g. `https://console-openshift-console.apps.ocp4.example.com`)
+The OpenShift 4 web console will be running at `https://console-openshift-console.apps.{{ dns.clusterid }}.{{ dns.domain }}` (e.g. `https://console-openshift-console.apps.okd4.lan.quanby.nl`)
 
 * Username: kubeadmin
-* Password: the output of `cat /root/ocp4/auth/kubeadmin-password`
+* Password: the output of `cat /root/okd4/auth/kubeadmin-password`
 
 ## Upgrade
 
@@ -390,7 +390,7 @@ If you're having issues upgrading you can try adding `--force` to the upgrade co
 oc adm upgrade --to-latest --force
 ```
 
-See [issue #46](https://github.com/RedHatOfficial/ocp4-helpernode/issues/46) to understand why the `--force` is necessary and an alternative to using it.
+See [issue #46](https://github.com/RedHatOfficial/okd4-helpernode/issues/46) to understand why the `--force` is necessary and an alternative to using it.
 
 Scale the router if you need to
 

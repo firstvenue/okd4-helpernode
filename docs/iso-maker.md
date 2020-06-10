@@ -6,7 +6,7 @@ Although very useful, with my opinionated playbook and his opinionated playbook;
 
 ## Cloning The Repo
 
-I assume you've done all the steps up to (and including) [creating the ignition files](https://github.com/RedHatOfficial/ocp4-helpernode/blob/master/docs/quickstart-static.md#create-ignition-configs). After the ignition files have been created and copied over to your webserver, clone the ISO maker repo.
+I assume you've done all the steps up to (and including) [creating the ignition files](https://github.com/RedHatOfficial/okd4-helpernode/blob/master/docs/quickstart-static.md#create-ignition-configs). After the ignition files have been created and copied over to your webserver, clone the ISO maker repo.
 
 ```
 cd ~
@@ -57,26 +57,26 @@ all:
   children:
     bootstrap:
       hosts:
-        bootstrap.ocp4.example.com:
+        bootstrap.okd4.lan.quanby.nl:
           ipv4: 192.168.7.20
     
     masters:
       hosts:
-        master0.ocp4.example.com:
+        master0.okd4.lan.quanby.nl:
           ipv4: 192.168.7.21
 
-        master1.ocp4.example.com:
+        master1.okd4.lan.quanby.nl:
           ipv4: 192.168.7.22
 
-        master2.ocp4.example.com:
+        master2.okd4.lan.quanby.nl:
           ipv4: 192.168.7.23
         
     workers:
       hosts:
-        worker0.ocp4.example.com:
+        worker0.okd4.lan.quanby.nl:
           ipv4: 192.168.7.11
 
-        worker1.ocp4.example.com:
+        worker1.okd4.lan.quanby.nl:
           ipv4: 192.168.7.12
 ...
 ```
@@ -137,4 +137,4 @@ Choose the correct option for the server you're installing. I would boot them in
 
 Once you've booted into the right option, RHCOS will install with the right IP address.
 
-You're now ready to continue with [the next step](https://github.com/RedHatOfficial/ocp4-helpernode/blob/master/docs/quickstart-static.md#wait-for-install) of the install.
+You're now ready to continue with [the next step](https://github.com/RedHatOfficial/okd4-helpernode/blob/master/docs/quickstart-static.md#wait-for-install) of the install.
