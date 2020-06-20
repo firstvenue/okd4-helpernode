@@ -178,16 +178,16 @@ This effectively disables DHCP, TFTP, and PXE on the helper. This implicitly mea
 You can have the helper deploy the nightly builds of OpenShift 4. Adding the following to your `vars.yaml` files will pull in the coresponding artifacts. Below is an example of pulling the `4.2.0-0.nightly-2019-09-16-114316` nightly
 
 ```
-ocp_bios: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/pre-release/latest/rhcos-42.80.20190828.2-metal-bios.raw.gz"
-ocp_initramfs: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/pre-release/latest/rhcos-42.80.20190828.2-installer-initramfs.img"
-ocp_install_kernel: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/pre-release/latest/rhcos-42.80.20190828.2-installer-kernel"
-ocp_client: "https://mirror.openshift.com/pub/openshift-v4/clients/ocp-dev-preview/latest/openshift-client-linux-4.2.0-0.nightly-2019-09-16-114316.tar.gz"
-ocp_installer: "https://mirror.openshift.com/pub/openshift-v4/clients/ocp-dev-preview/latest/openshift-install-linux-4.2.0-0.nightly-2019-09-16-114316.tar.gz"
+okd_bios: "https://mirror.openshift.com/pub/openshift-v4/dependencies/fcos/pre-release/latest/fcos-42.80.20190828.2-metal-bios.raw.gz"
+okd_initramfs: "https://mirror.openshift.com/pub/openshift-v4/dependencies/fcos/pre-release/latest/fcos-42.80.20190828.2-installer-initramfs.img"
+okd_install_kernel: "https://mirror.openshift.com/pub/openshift-v4/dependencies/fcos/pre-release/latest/fcos-42.80.20190828.2-installer-kernel"
+okd_client: "https://mirror.openshift.com/pub/openshift-v4/clients/ocp-dev-preview/latest/openshift-client-linux-4.2.0-0.nightly-2019-09-16-114316.tar.gz"
+okd_installer: "https://mirror.openshift.com/pub/openshift-v4/clients/ocp-dev-preview/latest/openshift-install-linux-4.2.0-0.nightly-2019-09-16-114316.tar.gz"
 ```
 
 To find the latest nighly build links:
 
-* [Install Artifacts](https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/pre-release/latest/)
+* [Install Artifacts](https://mirror.openshift.com/pub/openshift-v4/dependencies/fcos/pre-release/latest/)
 * [Client and Installer](https://mirror.openshift.com/pub/openshift-v4/clients/ocp-dev-preview/latest/)
 
 The [default](../vars/main.yml#L4-L8) is to use the latest stable OpenShift 4 release

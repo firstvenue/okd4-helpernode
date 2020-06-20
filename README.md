@@ -1,4 +1,4 @@
-# OCP4 Helper Node
+# OKD4 Helper Node
 
 > :heavy_exclamation_mark: *Red Hat support cannot assist with problems with this Repo*. For issues please open a GitHub issue
 
@@ -54,7 +54,7 @@ Next install `ansible` and `git`, then clone this repo.
 
 ```
 yum -y install ansible git
-git clone https://github.com/RedHatOfficial/okd4-helpernode
+git clone https://github.com/preinking/okd4-helpernode
 cd okd4-helpernode
 ```
 
@@ -89,7 +89,7 @@ You can run this script and it's options to display helpful information about th
 
 ## Install OpenShift 4 UPI
 
-Now you're ready to follow the [OCP4 UPI install doc](https://docs.openshift.com/container-platform/latest/installing/installing_bare_metal/installing-bare-metal.html#ssh-agent-using_installing-bare-metal)
+Now you're ready to follow the [OKD4 UPI install doc](https://docs.openshift.com/container-platform/latest/installing/installing_bare_metal/installing-bare-metal.html#ssh-agent-using_installing-bare-metal)
 
 
 # Quickstarts
@@ -100,7 +100,7 @@ The following are quickstarts. These are written using libvirt, but are generic 
 * DHCP install [quickstart](docs/quickstart.md)
 * Static IPs install [quickstart](docs/quickstart-static.md)
 * DHCP install on Power [quickstart](docs/quickstart-ppc64le.md)
-* OCP4 on VMware vSphere UPI Automation [quickstart](https://github.com/RedHatOfficial/okd4-vsphere-upi-automation)
+* OKD4 on VMware vSphere UPI Automation [quickstart](https://github.com/RedHatOfficial/okd4-vsphere-upi-automation)
 
 # Contributing
 

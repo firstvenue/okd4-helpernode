@@ -1,5 +1,5 @@
 ---
-# Setup OCP4 Helper Node
+# Setup OKD4 Helper Node
 
 - hosts: all
   vars_files:
@@ -104,7 +104,7 @@
       - /var/www/html/install
       - /var/www/html/ignition
 
-  - name: Delete OCP4 files, if requested, to download again
+  - name: Delete OKD4 files, if requested, to download again
     file:
        state: absent
        path: "{{ item }}"
@@ -112,13 +112,13 @@
       - "/usr/local/src/openshift-client-linux.tar.gz"
       - "/usr/local/src/openshift-install-linux.tar.gz"
       - "/var/www/html/install/bios.raw.gz"
-      - "/var/lib/tftpboot/rhcos/initramfs.img"
-      - "/var/lib/tftpboot/rhcos/kernel"
-    when: force_ocp_download
+      - "/var/lib/tftpboot/fcos/initramfs.img"
+      - "/var/lib/tftpboot/fcos/kernel"
+    when: force_okd_download
 
-  - name: Downloading OCP4 installer Bios
+  - name: Downloading OKD4 installer Bios
     get_url:
-      url: "{{ ocp_bios}}"
+      url: "{{ okd_bios}}"
       dest: /var/www/html/install/bios.raw.gz
       mode: 0555
       
@@ -191,7 +191,7 @@
 
   - name: Create TFTP RHCOS dir
     file:
-      path: /var/lib/tftpboot/rhcos
+      path: /var/lib/tftpboot/fcos
       state: directory
       mode: 0755
     when: not staticips
@@ -208,17 +208,17 @@
     shell: "cp -a /usr/share/syslinux/* /var/lib/tftpboot"
     when: not staticips and not ppc64le
 
-  - name: Downloading OCP4 installer initramfs
+  - name: Downloading OKD4 installer initramfs
     get_url:
-      url: "{{ ocp_initramfs }}"
-      dest: /var/lib/tftpboot/rhcos/initramfs.img
+      url: "{{ okd_initramfs }}"
+      dest: /var/lib/tftpboot/fcos/initramfs.img
       mode: 0555
     when: not staticips
 
-  - name: Downloading OCP4 installer kernel
+  - name: Downloading OKD4 installer kernel
     get_url:
-      url: "{{ ocp_install_kernel }}"
-      dest: /var/lib/tftpboot/rhcos/kernel
+      url: "{{ okd_install_kernel }}"
+      dest: /var/lib/tftpboot/fcos/kernel
       mode: 0555
     when: not staticips
 
@@ -415,23 +415,23 @@
         - worker
     when: chronyconfig.enabled
 
-  - name: Downloading OCP4 client
+  - name: Downloading OKD4 client
     get_url:
-      url: "{{ ocp_client }}"
+      url: "{{ okd_client }}"
       dest: /usr/local/src/openshift-client-linux.tar.gz
 
-  - name: Downloading OCP4 Installer
+  - name: Downloading OKD4 Installer
     get_url:
-      url: "{{ ocp_installer }}"
+      url: "{{ okd_installer }}"
       dest: /usr/local/src/openshift-install-linux.tar.gz
 
-  - name: Unarchiving OCP4 client
+  - name: Unarchiving OKD4 client
     unarchive:
       src: /usr/local/src/openshift-client-linux.tar.gz
       dest: /usr/local/bin
       remote_src: yes
 
-  - name: Unarchiving OCP4 Installer
+  - name: Unarchiving OKD4 Installer
     unarchive:
       src: /usr/local/src/openshift-install-linux.tar.gz
       dest: /usr/local/bin

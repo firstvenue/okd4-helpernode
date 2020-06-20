@@ -46,9 +46,9 @@ other:
     macaddr: "52:54:00:f4:2e:2e"
 
 ppc64le: true
-ocp_bios: "https://mirror.openshift.com/pub/openshift-v4/ppc64le/dependencies/rhcos/4.3/4.3.18/rhcos-4.3.18-ppc64le-metal.ppc64le.raw.gz"
-ocp_initramfs: "https://mirror.openshift.com/pub/openshift-v4/ppc64le/dependencies/rhcos/4.3/4.3.18/rhcos-4.3.18-ppc64le-installer-initramfs.ppc64le.img"
-ocp_install_kernel: "https://mirror.openshift.com/pub/openshift-v4/ppc64le/dependencies/rhcos/4.3/4.3.18/rhcos-4.3.18-ppc64le-installer-kernel-ppc64le"
-ocp_client: "https://mirror.openshift.com/pub/openshift-v4/ppc64le/clients/ocp/4.3.18/openshift-client-linux-4.3.18.tar.gz"
-ocp_installer: "https://mirror.openshift.com/pub/openshift-v4/ppc64le/clients/ocp/4.3.18/openshift-install-linux-4.3.18.tar.gz"
+okd_bios: "https://mirror.openshift.com/pub/openshift-v4/ppc64le/dependencies/fcos/4.3/4.3.18/fcos-4.3.18-ppc64le-metal.ppc64le.raw.gz"
+okd_initramfs: "https://mirror.openshift.com/pub/openshift-v4/ppc64le/dependencies/fcos/4.3/4.3.18/fcos-4.3.18-ppc64le-installer-initramfs.ppc64le.img"
+okd_install_kernel: "https://mirror.openshift.com/pub/openshift-v4/ppc64le/dependencies/fcos/4.3/4.3.18/fcos-4.3.18-ppc64le-installer-kernel-ppc64le"
+okd_client: "https://mirror.openshift.com/pub/openshift-v4/ppc64le/clients/ocp/4.3.18/openshift-client-linux-4.3.18.tar.gz"
+okd_installer: "https://mirror.openshift.com/pub/openshift-v4/ppc64le/clients/ocp/4.3.18/openshift-install-linux-4.3.18.tar.gz"
 

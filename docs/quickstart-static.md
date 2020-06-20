@@ -20,7 +20,7 @@ cd ~/okd4-workingdir
 Download the virtual network configuration file, [virt-net.xml](examples/virt-net.xml)
 
 ```
-wget https://raw.githubusercontent.com/RedHatOfficial/okd4-helpernode/master/docs/examples/virt-net.xml
+wget https://raw.githubusercontent.com/preinking/okd4-helpernode/master/docs/examples/virt-net.xml
 ```
 
 Create a virtual network using this file file provided in this repo (modify if you need to).
@@ -43,12 +43,12 @@ Download the Kickstart file for either [EL 7](examples/helper-ks.cfg) or [EL 8](
 
 __EL 7__
 ```
-wget https://raw.githubusercontent.com/RedHatOfficial/okd4-helpernode/master/docs/examples/helper-ks.cfg -O helper-ks.cfg
+wget https://raw.githubusercontent.com/preinking/okd4-helpernode/master/docs/examples/helper-ks.cfg -O helper-ks.cfg
 ```
 
 __EL 8__
 ```
-wget https://raw.githubusercontent.com/RedHatOfficial/okd4-helpernode/master/docs/examples/helper-ks8.cfg -O helper-ks.cfg
+wget https://raw.githubusercontent.com/preinking/okd4-helpernode/master/docs/examples/helper-ks8.cfg -O helper-ks.cfg
 ```
 
 Edit `helper-ks.cfg` for your environment and use it to install the helper. The following command installs it "unattended".
@@ -114,7 +114,7 @@ Install `ansible` and `git` and clone this repo
 
 ```
 yum -y install ansible git
-git clone https://github.com/RedHatOfficial/okd4-helpernode
+git clone https://github.com/preinking/okd4-helpernode
 cd okd4-helpernode
 ```
 
@@ -254,14 +254,14 @@ Install each VM one by one; here's an example for my boostrap node
 virt-install --name=okd4-bootstrap --vcpus=4 --ram=8192 \
 --disk path=/var/lib/libvirt/images/okd4-bootstrap.qcow2,bus=virtio,size=120 \
 --os-variant rhel8.0 --network network=openshift4,model=virtio \
---boot menu=on --cdrom /exports/ISO/rhcos-4.2.0-x86_64-installer.iso
+--boot menu=on --cdrom /exports/ISO/fcos-4.2.0-x86_64-installer.iso
 ```
 
 > **NOTE** If the console doesn't launch you can open it via `virt-manager`
 
 Once booted; press `tab` on the boot menu
 
-![rhcos](images/rhcos.png)
+![fcos](images/fcos.png)
 
 Add your staticips and coreos options. Here is an example of what I used for my bootstrap node. (type this **ALL IN ONE LINE** ...I only used linebreaks here for ease of readability...but type it all in one line)
 
@@ -390,7 +390,7 @@ If you're having issues upgrading you can try adding `--force` to the upgrade co
 oc adm upgrade --to-latest --force
 ```
 
-See [issue #46](https://github.com/RedHatOfficial/okd4-helpernode/issues/46) to understand why the `--force` is necessary and an alternative to using it.
+See [issue #46](https://github.com/preinking/okd4-helpernode/issues/46) to understand why the `--force` is necessary and an alternative to using it.
 
 Scale the router if you need to
 
