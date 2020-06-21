@@ -112,6 +112,7 @@
       - "/usr/local/src/openshift-client-linux.tar.gz"
       - "/usr/local/src/openshift-install-linux.tar.gz"
       - "/var/www/html/install/bios.raw.xz"
+      - "/var/www/html/install/bios.raw.xz.sig"
       - "/var/lib/tftpboot/fcos/initramfs.img"
       - "/var/lib/tftpboot/fcos/kernel"
     when: force_okd_download
