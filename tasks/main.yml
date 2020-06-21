@@ -121,7 +121,13 @@
       url: "{{ okd_bios}}"
       dest: /var/www/html/install/bios.raw.xz
       mode: 0555
-      
+
+  - name: Downloading OKD4 installer Bios - Signature
+    get_url:
+      url: "{{ okd_bios}}.sig"
+      dest: /var/www/html/install/bios.raw.xz.sig
+      mode: 0555
+
   - name: Start firewalld service
     systemd:
       name: firewalld
