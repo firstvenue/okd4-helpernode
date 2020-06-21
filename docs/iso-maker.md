@@ -39,7 +39,7 @@ install_drive: vda
 okd_version: 4.4
 iso_checksum: dc1287165ff5b9d10e729c5541b616d466a9f0ed2e3380d59490503758a4cb24
 iso_name: fcos-{{ okd_version }}.3-x86_64-installer.x86_64.iso
-fcos_bios: bios.raw.gz
+fcos_bios: bios.raw.xz
 ...
 ```
 
@@ -107,7 +107,7 @@ I basically changed `https://mirror.openshift.com/pub/openshift-v4/dependencies/
 You'll need to move some stuff around where the ISO maker expects them to find them.
 
 ```
-cp /var/www/html/install/bios.raw.gz /var/www/html/
+cp /var/www/html/install/bios.raw.xz /var/www/html/
 cp /var/www/html/ignition/*.ign /var/www/html/
 ln -s /var/www/html/worker.ign /var/www/html/workers.ign
 ln -s /var/www/html/master.ign /var/www/html/masters.ign

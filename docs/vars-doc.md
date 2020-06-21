@@ -178,7 +178,7 @@ This effectively disables DHCP, TFTP, and PXE on the helper. This implicitly mea
 You can have the helper deploy the nightly builds of OpenShift 4. Adding the following to your `vars.yaml` files will pull in the coresponding artifacts. Below is an example of pulling the `4.2.0-0.nightly-2019-09-16-114316` nightly
 
 ```
-okd_bios: "https://mirror.openshift.com/pub/openshift-v4/dependencies/fcos/pre-release/latest/fcos-42.80.20190828.2-metal-bios.raw.gz"
+okd_bios: "https://mirror.openshift.com/pub/openshift-v4/dependencies/fcos/pre-release/latest/fcos-42.80.20190828.2-metal-bios.raw.xz"
 okd_initramfs: "https://mirror.openshift.com/pub/openshift-v4/dependencies/fcos/pre-release/latest/fcos-42.80.20190828.2-installer-initramfs.img"
 okd_install_kernel: "https://mirror.openshift.com/pub/openshift-v4/dependencies/fcos/pre-release/latest/fcos-42.80.20190828.2-installer-kernel"
 okd_client: "https://mirror.openshift.com/pub/openshift-v4/clients/ocp-dev-preview/latest/openshift-client-linux-4.2.0-0.nightly-2019-09-16-114316.tar.gz"

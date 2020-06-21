@@ -269,7 +269,7 @@ Add your staticips and coreos options. Here is an example of what I used for my 
 ip=192.168.7.20::192.168.7.1:255.255.255.0:bootstrap.okd4.lan.quanby.nl:enp1s0:none
 nameserver=192.168.7.77
 coreos.inst.install_dev=vda
-coreos.inst.image_url=http://192.168.7.77:8080/install/bios.raw.gz
+coreos.inst.image_url=http://192.168.7.77:8080/install/bios.raw.xz
 coreos.inst.ignition_url=http://192.168.7.77:8080/ignition/bootstrap.ign
 ```
 

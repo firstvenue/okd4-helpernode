@@ -4,11 +4,16 @@ install_filetranspiler: false
 staticips: false
 force_okd_download: false
 okd_bios: "https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/32.20200601.3.0/x86_64/fedora-coreos-32.20200601.3.0-metal.x86_64.raw.xz"
-okd_initramfs: "https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/32.20200601.3.0/x86_64/fedora-coreos-32.20200601.3.0-live-kernel-x86_64"
-okd_install_kernel: "https://mirror.openshift.com/pub/openshift-v4/dependencies/fcos/pre-release/latest/fcos-42.80.20190828.2-installer-kernel"
+okd_initramfs: "https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/32.20200601.3.0/x86_64/fedora-coreos-32.20200601.3.0-live-initramfs.x86_64.img"
+okd_install_kernel: "https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/32.20200601.3.0/x86_64/fedora-coreos-32.20200601.3.0-live-kernel-x86_64"
 okd_client: "https://github.com/openshift/okd/releases/download/4.4.0-0.okd-2020-05-23-055148-beta5/openshift-client-linux-4.4.0-0.okd-2020-05-23-055148-beta5.tar.gz"
 okd_installer: "https://github.com/openshift/okd/releases/download/4.4.0-0.okd-2020-05-23-055148-beta5/openshift-install-linux-4.4.0-0.okd-2020-05-23-055148-beta5.tar.gz"
 chars: (\\_|\\$|\\\|\\/|\\=|\\)|\\(|\\&|\\^|\\%|\\$|\\#|\\@|\\!|\\*)
 ppc64le: false
 chronyconfig:
   enabled: false
+
+
+  https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/32.20200601.3.0/x86_64/fedora-coreos-32.20200601.3.0-live-kernel-x86_64
+https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/32.20200601.3.0/x86_64/fedora-coreos-32.20200601.3.0-live-kernel-x86_64
+https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/32.20200601.3.0/x86_64/fedora-coreos-32.20200601.3.0-live-initramfs.x86_64.img
